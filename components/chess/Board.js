@@ -9,7 +9,7 @@ import bishop from "../../helpers/chess/bishop";
 import queen from "../../helpers/chess/queen";
 import knight from "../../helpers/chess/knight";
 import king from "../../helpers/chess/king";
-import getBestMove from "../../helpers/chess/ai";
+// import getBestMove from "../../helpers/chess/ai";
 
 function Board() {
   const [board, setBoard] = React.useState([]);
@@ -18,29 +18,30 @@ function Board() {
   const [lost, setLost] = React.useState({ b: [], w: [] });
   const [gameOver, setGameOver] = React.useState(false);
 
-  React.useEffect(() => {
-    if (turn === "b" && !gameOver) {
-      try {
-        let bestMove = getBestMove(_.cloneDeep(board), 10);
-        // console.log(bestMove);
-        let source = board[bestMove[0].x][bestMove[0].y];
-        let target = board[bestMove[1].x][bestMove[1].y];
+  // Uncomment for AI, but it is very janky
+  // React.useEffect(() => {
+  //   if (turn === "b" && !gameOver) {
+  //     try {
+  //       let bestMove = getBestMove(_.cloneDeep(board), 10);
+  //       // console.log(bestMove);
+  //       let source = board[bestMove[0].x][bestMove[0].y];
+  //       let target = board[bestMove[1].x][bestMove[1].y];
 
-        if (target.type === "K") setGameOver(true);
-        if (board[target.x][target.y].type)
-          lost[board[target.x][target.y].team].push({ ...target });
-        board[target.x][target.y].type = source.type;
-        board[target.x][target.y].team = source.team;
-        board[source.x][source.y].type = null;
-        board[source.x][source.y].team = null;
-        setBoard(board);
-        setLost(lost);
-        setTurn("w");
-      } catch (err) {
-        console.log(err);
-      }
-    }
-  }, [turn, board, lost, gameOver]);
+  //       if (target.type === "K") setGameOver(true);
+  //       if (board[target.x][target.y].type)
+  //         lost[board[target.x][target.y].team].push({ ...target });
+  //       board[target.x][target.y].type = source.type;
+  //       board[target.x][target.y].team = source.team;
+  //       board[source.x][source.y].type = null;
+  //       board[source.x][source.y].team = null;
+  //       setBoard(board);
+  //       setLost(lost);
+  //       setTurn("w");
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   }
+  // }, [turn, board, lost, gameOver]);
 
   React.useEffect(() => {
     setBoard(setup());

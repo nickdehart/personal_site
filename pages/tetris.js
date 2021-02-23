@@ -123,9 +123,9 @@ const Tetris = () => {
       </div>
       <style jsx>{`
         .tetris-wrapper {
-          width: 100vw;
+          width: 100%;
           height: 100vh;
-          background-color: #63c;
+          // background-color: #63c;
           background-size: cover;
           overflow: hidden;
         }
