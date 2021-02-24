@@ -96,15 +96,7 @@ function Board() {
   };
 
   return (
-    <div
-      style={{
-        width: "90%",
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "flex-start"
-      }}
-    >
+    <div className="game-container">
       {gameOver && (
         <div
           style={{
@@ -113,21 +105,16 @@ function Board() {
             border: "3px solid",
             backgroundColor: "white",
             padding: "20px 60px 20px 60px",
-            transform: "translate(100%, 100%)"
+            transform: "translate(100%, 100%)",
+            zIndex: 1
           }}
         >
           <h1>GAME OVER</h1>
           <h4>{turn === "w" ? "Black" : "White"} Team Wins!</h4>
         </div>
       )}
-      <div style={{ width: "20%" }}>
+      <div className="lost-pieces">
         {lost.w.map((item, index) => (
-          // <img
-          //   key={`w-lost-${index}`}
-          //   style={{ maxWidth: "30px" }}
-          //   src={`/chesspieces/${item.team}${item.type}.png`}
-          //   alt={`${item.team}${item.type}`}
-          // />
           <Image
             key={`w-lost-${index}`}
             src={`/chesspieces/${item.team}${item.type}.png`}
@@ -137,7 +124,7 @@ function Board() {
           />
         ))}
       </div>
-      <table style={{ minWidth: "510px" }}>
+      <table>
         <thead>
           <tr>
             <th></th>
@@ -162,6 +149,7 @@ function Board() {
                 let background = colIndex % 2 === modifier ? "#61dafb" : "#fff";
                 return (
                   <td
+                    className="piece-cell"
                     key={`col-${colIndex}`}
                     onClick={col.active ? () => handleMove(col) : () => {}}
                     style={{
@@ -185,14 +173,8 @@ function Board() {
           ))}
         </tbody>
       </table>
-      <div style={{ width: "20%" }}>
+      <div className="lost-pieces">
         {lost.b.map((item, index) => (
-          // <img
-          //   key={`b-lost-${index}`}
-          //   style={{ maxWidth: "30px" }}
-          //   src={`${process.env.PUBLIC_URL}/chesspieces/${item.team}${item.type}.png`}
-          //   alt={`${item.team}${item.type}`}
-          // />
           <Image
             key={`b-lost-${index}`}
             src={`/chesspieces/${item.team}${item.type}.png`}
@@ -203,7 +185,26 @@ function Board() {
         ))}
       </div>
       <style jsx>{`
-        td {
+      .game-container {
+        min-width: 90%,
+        display: flex,
+        flex-direction: row,
+        justify-content: space-between,
+        align-items: flex-start
+      }
+      .lost-pieces {
+        width: 20%;
+      }
+      @media only screen and (max-width: 600px) {
+        .game-container {
+          flex-direction: column;
+        }
+        .lost-pieces {
+          width: 100%;
+          height: 100px;
+        }
+      }
+        .piece-cell {
           max-width: 50px;
           max-height: 50px;
           width: 50px;

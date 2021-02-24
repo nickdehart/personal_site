@@ -20,6 +20,16 @@ const Stage = ({ stage }) => (
         max-width: 25vw;
         background: #111;
       }
+
+      @media only screen and (max-width: 600px) {
+        .stage {
+          grid-template-rows: repeat(
+            ${stage.length},
+            calc(75vw / ${stage[0].length})
+          );
+          max-width: 75vw;
+        }
+      }
     `}</style>
   </>
 );

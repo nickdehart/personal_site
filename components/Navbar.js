@@ -58,6 +58,12 @@ function Navbar() {
           background: #63c;
           color: white;
         }
+
+        @media only screen and (max-width: 600px) {
+          nav {
+            width: 0px;
+          }
+        }
       `}</style>
     </nav>
   );

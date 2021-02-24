@@ -1,5 +1,12 @@
 import React, { useState } from "react";
 import { createStage, checkCollision } from "../helpers/tetris/gameHelpers";
+import {
+  faArrowUp,
+  faArrowDown,
+  faArrowLeft,
+  faArrowRight
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // Custom Hooks
 import { useInterval } from "../hooks/tetris/useInterval";
@@ -71,7 +78,7 @@ const Tetris = () => {
     drop();
   };
 
-  const move = ({ keyCode }) => {
+  const move = async ({ keyCode }) => {
     if (!gameOver) {
       switch (keyCode) {
         case 37:
@@ -82,6 +89,7 @@ const Tetris = () => {
           break;
         case 40:
           dropPlayer();
+          return await keyUp({ keyCode: keyCode });
           break;
         case 38:
           playerRotate(stage, 1);
@@ -106,7 +114,6 @@ const Tetris = () => {
         onKeyUp={e => keyUp(e)}
       >
         <div className="tetris">
-          <Stage stage={stage} />
           <aside>
             {gameOver ? (
               <Display gameOver={gameOver} text="Game Over" />
@@ -119,6 +126,31 @@ const Tetris = () => {
             )}
             <StartButton callback={startGame} />
           </aside>
+          <Stage stage={stage} />
+          <div className="controller">
+            <button onClick={() => move({ keyCode: 38 })}>
+              <FontAwesomeIcon icon={faArrowUp} />
+            </button>
+            <div
+              style={{
+                width: "75%",
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between"
+              }}
+            >
+              <button onClick={() => move({ keyCode: 37 })}>
+                <FontAwesomeIcon icon={faArrowLeft} />
+              </button>
+              <button onClick={() => move({ keyCode: 39 })}>
+                <FontAwesomeIcon icon={faArrowRight} />
+              </button>
+            </div>
+            <button id="down" onClick={() => move({ keyCode: 40 })}>
+              <FontAwesomeIcon icon={faArrowDown} />
+            </button>
+          </div>
         </div>
       </div>
       <style jsx>{`
@@ -127,15 +159,45 @@ const Tetris = () => {
           height: 100vh;
           // background-color: #63c;
           background-size: cover;
-          overflow: hidden;
+          // overflow: hidden;
         }
 
         .tetris {
           display: flex;
-          align-items: flex-start;
+          align-items: center;
+          justify-content: center;
           padding: 40px;
           margin: 0 auto;
           max-width: 900px;
+        }
+
+        .controller {
+          width: 100%;
+          margin-top: 10px;
+          display: none;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+        .controller button {
+          width: 50px;
+          height: 50px;
+          background-color: #63c;
+          border: none;
+          border-radius: 0;
+          color: white;
+          font-size: 8px;
+          margin: 2px;
+          padding: 10px;
+        }
+
+        @media only screen and (max-width: 600px) {
+          .tetris {
+            flex-direction: column;
+          }
+          .controller {
+            display: flex;
+          }
         }
 
         aside {

@@ -18,7 +18,8 @@ function Piece({ getMovements, piece }) {
       </button>
       <style jsx>{`
         button {
-          max-width: 50px;
+          height: 100%;
+          width: 100%;
         }
         button:hover {
           cursor: pointer;

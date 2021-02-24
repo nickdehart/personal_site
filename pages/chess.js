@@ -10,7 +10,7 @@ function Chess() {
       </header>
       <div
         style={{
-          width: "100%",
+          maxWidth: "100vw",
           height: "100%",
           display: "flex",
           flexDirection: "column",
@@ -23,7 +23,7 @@ function Chess() {
       <style jsx>{`
         .App {
           text-align: center;
-          height: 90vh;
+          height: 100%;
         }
 
         .App-logo {
@@ -41,11 +41,11 @@ function Chess() {
           background-color: #282c34;
           min-height: 10vh;
           display: flex;
-          flex-direction: row;
           align-items: center;
           justify-content: flex-start;
           font-size: calc(10px + 2vmin);
           color: white;
+          margin-bottom: 20px;
         }
 
         @keyframes App-logo-spin {
