@@ -45,8 +45,11 @@
 }
 
 @media (max-width: 600px) {
-  .grid {
+  .main {
     width: 100%;
     flex-direction: column;
+  }
+  .grid {
+    align-self: center;
   }
 }

@@ -2,6 +2,7 @@ import React from "react";
 import Link from "./Link";
 
 function Navbar() {
+  const [open, setOpen] = React.useState(false);
   let links = {
     Home: "/",
     Tetris: "/tetris",
@@ -9,18 +10,32 @@ function Navbar() {
     Chess: "/chess"
   };
   return (
-    <nav>
-      <ul>
-        {Object.keys(links).map((item, index) => (
-          <li key={`link-${index}`}>
-            <Link href={links[item]}>
-              <a>{item}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
+    <>
+      <nav id="navigation">
+        <p style={{ fontSize: "50px", margin: "0px", zIndex: 1 }}>&#128142;</p>
+        <p style={{ fontSize: "70px", margin: "0px", marginTop: "-90px" }}>
+          &#128080;
+        </p>
+        <ul>
+          {Object.keys(links).map((item, index) => (
+            <li key={`link-${index}`}>
+              <Link href={links[item]}>
+                <a>{item}</a>
+              </Link>
+            </li>
+          ))}
+        </ul>
+        {/* <button onClick={() => setOpen(false)}>&times;</button> */}
+      </nav>
+      <button onClick={() => setOpen(!open)}>
+        {open ? <>&times;</> : <>&#9776;</>}
+      </button>
       <style jsx>{`
         nav {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: flex-start;
           height: 100%;
           width: 100px;
           position: fixed;
@@ -28,9 +43,8 @@ function Navbar() {
           top: 0;
           left: 0;
           background-color: #fff;
-          //   border-right: 1px solid black;
           overflow-x: hidden;
-          padding-top: 50px;
+          padding-top: 30px;
           white-space: nowrap;
         }
 
@@ -38,6 +52,7 @@ function Navbar() {
           list-style: none;
           margin: 0;
           padding: 0;
+          width: 100%;
         }
 
         /* Only stick if you can fit */
@@ -58,14 +73,32 @@ function Navbar() {
           background: #63c;
           color: white;
         }
-
+        button {
+          width: 40px;
+          height: 40px;
+          display: none;
+          font-size: 25px;
+          background: #63c;
+          color: white;
+          margin: 15px;
+          border-radius: 6px;
+          border: 0px;
+          position: absolute;
+          right: 0;
+        }
         @media only screen and (max-width: 600px) {
           nav {
-            width: 0px;
+            transform: translate(
+              ${open ? "0px" : "-100px"}
+            ); /* just to show a little */
+            transition: 0.2s;
+          }
+          button {
+            display: inline-block;
           }
         }
       `}</style>
-    </nav>
+    </>
   );
 }
 
