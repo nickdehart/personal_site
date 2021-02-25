@@ -93,7 +93,9 @@ function Navbar() {
             transition: 0.2s;
           }
           button {
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
         }
       `}</style>
