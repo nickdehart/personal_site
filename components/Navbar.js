@@ -25,7 +25,6 @@ function Navbar() {
             </li>
           ))}
         </ul>
-        {/* <button onClick={() => setOpen(false)}>&times;</button> */}
       </nav>
       <button onClick={() => setOpen(!open)}>
         {open ? <>&times;</> : <>&#9776;</>}
