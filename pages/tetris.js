@@ -1,12 +1,5 @@
 import React, { useState } from "react";
 import { createStage, checkCollision } from "../helpers/tetris/gameHelpers";
-import {
-  faArrowUp,
-  faArrowDown,
-  faArrowLeft,
-  faArrowRight
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // Custom Hooks
 import { useInterval } from "../hooks/tetris/useInterval";
@@ -129,7 +122,19 @@ const Tetris = () => {
           <Stage stage={stage} />
           <div className="controller">
             <button onClick={() => move({ keyCode: 38 })}>
-              <FontAwesomeIcon icon={faArrowUp} />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 10l7-7m0 0l7 7m-7-7v18"
+                />
+              </svg>
             </button>
             <div
               style={{
@@ -141,14 +146,50 @@ const Tetris = () => {
               }}
             >
               <button onClick={() => move({ keyCode: 37 })}>
-                <FontAwesomeIcon icon={faArrowLeft} />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                  />
+                </svg>
               </button>
               <button onClick={() => move({ keyCode: 39 })}>
-                <FontAwesomeIcon icon={faArrowRight} />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  />
+                </svg>
               </button>
             </div>
             <button id="down" onClick={() => move({ keyCode: 40 })}>
-              <FontAwesomeIcon icon={faArrowDown} />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                />
+              </svg>
             </button>
           </div>
         </div>

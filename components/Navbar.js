@@ -27,7 +27,35 @@ function Navbar() {
         </ul>
       </nav>
       <button onClick={() => setOpen(!open)}>
-        {open ? <>&times;</> : <>&#9776;</>}
+        {open ? (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        ) : (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        )}
       </button>
       <style jsx>{`
         nav {
@@ -80,10 +108,13 @@ function Navbar() {
           background: #63c;
           color: white;
           margin: 15px;
-          border-radius: 6px;
+          border-radius: 7px;
           border: 0px;
           position: absolute;
           right: 0;
+        }
+        svg {
+          width: fit-content;
         }
         @media only screen and (max-width: 600px) {
           nav {
