@@ -1,14 +1,9 @@
 import React from "react";
 import Link from "./Link";
 
-function Navbar() {
+function Navbar({ links }) {
   const [open, setOpen] = React.useState(false);
-  let links = {
-    Home: "/",
-    Tetris: "/tetris",
-    Sudoku: "/sudoku",
-    Chess: "/chess"
-  };
+
   return (
     <>
       <nav id="navigation">
@@ -19,8 +14,8 @@ function Navbar() {
         <ul>
           {Object.keys(links).map((item, index) => (
             <li key={`link-${index}`}>
-              <Link href={links[item]}>
-                <a>{item}</a>
+              <Link href={item}>
+                <a>{links[item].route}</a>
               </Link>
             </li>
           ))}
@@ -64,7 +59,7 @@ function Navbar() {
           align-items: center;
           justify-content: flex-start;
           height: 100%;
-          width: 100px;
+          width: 130px;
           position: fixed;
           z-index: 1;
           top: 0;
@@ -105,9 +100,10 @@ function Navbar() {
           height: 40px;
           display: none;
           font-size: 25px;
-          background: #63c;
+          // background: #63c;
+          background: #282c34;
           color: white;
-          margin: 15px;
+          margin: 25px 15px 15px 15px;
           border-radius: 7px;
           border: 0px;
           position: absolute;
@@ -116,11 +112,12 @@ function Navbar() {
         svg {
           width: 100%;
           height: 100%;
+          z-index: 2;
         }
         @media only screen and (max-width: 600px) {
           nav {
             transform: translate(
-              ${open ? "0px" : "-100px"}
+              ${open ? "0px" : "-130px"}
             ); /* just to show a little */
             transition: 0.2s;
           }

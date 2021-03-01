@@ -95,10 +95,10 @@ function Sudoku() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
         <img src="/logo.svg" className="App-logo" alt="logo" />
         <b>React Sudoku</b>
-      </header>
+      </header> */}
       {puzzle && (
         <Puzzle
           puzzleOrig={puzzle}
@@ -116,37 +116,6 @@ function Sudoku() {
         .App {
           text-align: center;
           height: 100%;
-        }
-
-        .App-logo {
-          height: 10vmin;
-          pointer-events: none;
-        }
-
-        @media (prefers-reduced-motion: no-preference) {
-          .App-logo {
-            animation: App-logo-spin infinite 20s linear;
-          }
-        }
-
-        .App-header {
-          background-color: #282c34;
-          min-height: 10vh;
-          display: flex;
-          align-items: center;
-          justify-content: flex-start;
-          font-size: calc(10px + 2vmin);
-          color: white;
-          margin-bottom: 20px;
-        }
-
-        @keyframes App-logo-spin {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
         }
 
         button {

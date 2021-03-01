@@ -99,6 +99,10 @@ const Tetris = () => {
 
   return (
     <main>
+      {/* <header className="App-header">
+        <img src="/logo.svg" className="App-logo" alt="logo" />
+        <b>ReacTetris</b>
+      </header> */}
       <div
         className="tetris-wrapper"
         role="button"
@@ -207,7 +211,7 @@ const Tetris = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 40px;
+          padding: 0px 40px 40px 40px;
           margin: 0 auto;
           max-width: 900px;
         }
