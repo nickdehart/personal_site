@@ -12,7 +12,8 @@ function MyApp({ Component, pageProps }) {
     "/tetris": { route: "Tetris", header: "ReacTetris" },
     "/sudoku": { route: "Sudoku", header: "React Sudoku" },
     "/chess": { route: "Chess", header: "React Chess" },
-    "/minesweeper": { route: "Minesweeper", header: "React Minesweeper" }
+    "/minesweeper": { route: "Minesweeper", header: "React Minesweeper" },
+    "/404": { route: "", header: "" }
   };
   // const [price, setPrice] = React.useState([]);
 
@@ -59,7 +60,7 @@ function MyApp({ Component, pageProps }) {
           }}
         >
           <img src="/logo.svg" className="App-logo" alt="logo" />
-          <b>{links[router.pathname].header}</b>
+          <b>{links[router.pathname] ? links[router.pathname].header : ""}</b>
         </div>
       </header>
       <Component {...pageProps} />
