@@ -99,10 +99,6 @@ const Tetris = () => {
 
   return (
     <main>
-      {/* <header className="App-header">
-        <img src="/logo.svg" className="App-logo" alt="logo" />
-        <b>ReacTetris</b>
-      </header> */}
       <div
         className="tetris-wrapper"
         role="button"
@@ -140,15 +136,7 @@ const Tetris = () => {
                 />
               </svg>
             </button>
-            <div
-              style={{
-                width: "75%",
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between"
-              }}
-            >
+            <div>
               <button onClick={() => move({ keyCode: 37 })}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -224,6 +212,7 @@ const Tetris = () => {
           align-items: center;
           justify-content: center;
         }
+
         .controller button {
           width: 50px;
           height: 50px;
@@ -234,6 +223,14 @@ const Tetris = () => {
           font-size: 8px;
           margin: 2px;
           padding: 10px;
+        }
+
+        .controller div {
+          width: 75%;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
         }
 
         @media only screen and (max-width: 600px) {

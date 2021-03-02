@@ -42,34 +42,22 @@ function Puzzle({ puzzleOrig, puzzleWorking, setPuzzleWorking }) {
                   <td></td>
                 </tr>
               )}
-              <tr
-                style={{
-                  borderTop:
-                    rowIndex % 3 === 0 && rowIndex > 0 && "1px solid gray"
-                }}
-              >
+              <tr>
                 <td>
                   <b>{rowIndex + 1}</b>
                 </td>
-                {/* <td></td> */}
                 {row.map((column, colIndex) => (
                   <React.Fragment key={`col-${colIndex}`}>
                     {colIndex % 3 === 0 && <td></td>}
                     <td
                       onMouseOver={() => handleHover(column)}
-                      style={{
-                        // paddingTop: rowIndex % 3 === 0 ? "35px" : "5px",
-                        // paddingLeft: colIndex % 3 === 0 ? "45px" : "5px",
-                        border: "1px solid black"
-                      }}
+                      className="outline"
                     >
                       {puzzleOrig[rowIndex][colIndex] ? (
                         <div
-                          className="num-div"
-                          style={{
-                            backgroundColor:
-                              column > 0 && column === active && "#9ecaed"
-                          }}
+                          className={`num-div ${column > 0 &&
+                            column === active &&
+                            "highlight"}`}
                         >
                           <b>{column}</b>
                         </div>
@@ -78,10 +66,9 @@ function Puzzle({ puzzleOrig, puzzleWorking, setPuzzleWorking }) {
                           type="number"
                           value={column > 0 ? column : ""}
                           onChange={e => makeEdit(e, rowIndex, colIndex)}
-                          style={{
-                            backgroundColor:
-                              column > 0 && column === active && "#9ecaed"
-                          }}
+                          className={`${column > 0 &&
+                            column === active &&
+                            "highlight"}`}
                           min="1"
                           max="9"
                         />
@@ -102,7 +89,6 @@ function Puzzle({ puzzleOrig, puzzleWorking, setPuzzleWorking }) {
           background: transparent;
           border: none;
           border-bottom: 1px solid gray;
-          /* border-radius: 3px; */
         }
 
         input::-webkit-outer-spin-button,
@@ -141,6 +127,14 @@ function Puzzle({ puzzleOrig, puzzleWorking, setPuzzleWorking }) {
           vertical-align: bottom;
           width: 30px;
           height: 30px;
+        }
+
+        .outline {
+          border: 1px solid black;
+        }
+
+        .highlight {
+          background-color: #9ecaed;
         }
 
         .table-heading {

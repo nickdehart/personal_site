@@ -1,29 +1,19 @@
-import React from "react";
 import Board from "../components/chess/Board";
 
 function Chess() {
   return (
     <div className="App">
-      {/* <header className="App-header">
-        <img src="/logo.svg" className="App-logo" alt="logo" />
-        <b>React Chess</b>
-      </header> */}
-      <div
-        style={{
-          maxWidth: "100vw",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center"
-        }}
-      >
+      <div className="board-wrapper">
         <Board />
       </div>
       <style jsx>{`
-        .App {
-          text-align: center;
+        .board-wrapper {
+          max-width: 100vw;
           height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
         }
       `}</style>
     </div>

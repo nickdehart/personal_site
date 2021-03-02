@@ -29,6 +29,11 @@ a {
   }
 }
 
+.App {
+  text-align: center;
+  height: 100%;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 10vh;

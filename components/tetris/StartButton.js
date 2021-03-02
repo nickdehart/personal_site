@@ -1,10 +1,6 @@
-import React from "react";
-
 const StartButton = ({ callback }) => (
-  <>
-    <button className="start-button" onClick={callback}>
-      Start Game
-    </button>
+  <button className="start-button" onClick={callback}>
+    Start Game
     <style jsx>{`
       .start-button {
         box-sizing: border-box;
@@ -22,7 +18,7 @@ const StartButton = ({ callback }) => (
         cursor: pointer;
       }
     `}</style>
-  </>
+  </button>
 );
 
 export default StartButton;

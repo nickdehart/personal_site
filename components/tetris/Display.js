@@ -1,8 +1,6 @@
-import React from "react";
-
 const Display = ({ gameOver, text }) => (
-  <>
-    <div className="display">{text}</div>
+  <div className="display">
+    {text}
     <style jsx>{`
       .display {
         box-sizing: border-box;
@@ -20,7 +18,7 @@ const Display = ({ gameOver, text }) => (
         font-size: 0.8rem;
       }
     `}</style>
-  </>
+  </div>
 );
 
 export default Display;

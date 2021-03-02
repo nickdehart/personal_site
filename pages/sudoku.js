@@ -95,10 +95,6 @@ function Sudoku() {
 
   return (
     <div className="App">
-      {/* <header className="App-header">
-        <img src="/logo.svg" className="App-logo" alt="logo" />
-        <b>React Sudoku</b>
-      </header> */}
       {puzzle && (
         <Puzzle
           puzzleOrig={puzzle}
@@ -109,15 +105,9 @@ function Sudoku() {
       <div>
         <button onClick={restart}>Restart</button>
         <button onClick={hint}>Hint</button>
-        {/* <button>Error Check</button> */}
         <button onClick={solvePuzzle}>Solve</button>
       </div>
       <style jsx>{`
-        .App {
-          text-align: center;
-          height: 100%;
-        }
-
         button {
           margin: 20px 10px 0px 10px;
           padding: 5px 15px 5px 15px;

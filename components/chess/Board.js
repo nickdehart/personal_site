@@ -9,7 +9,6 @@ import bishop from "../../helpers/chess/bishop";
 import queen from "../../helpers/chess/queen";
 import knight from "../../helpers/chess/knight";
 import king from "../../helpers/chess/king";
-// import getBestMove from "../../helpers/chess/ai";
 
 function Board() {
   const [board, setBoard] = React.useState([]);
@@ -47,24 +46,8 @@ function Board() {
     "7": "h"
   };
 
-  // Uncomment for AI, but it is very janky
   React.useEffect(() => {
     if (turn === "b" && !gameOver) {
-      // let bestMove = getBestMove(_.cloneDeep(board), 10);
-      // console.log(bestMove);
-      // let source = board[bestMove[0].x][bestMove[0].y];
-      // let target = board[bestMove[1].x][bestMove[1].y];
-      // if (target.type === "K") setGameOver(true);
-      // if (board[target.x][target.y].type)
-      //   lost[board[target.x][target.y].team].push({ ...target });
-      // board[target.x][target.y].type = source.type;
-      // board[target.x][target.y].team = source.team;
-      // board[source.x][source.y].type = null;
-      // board[source.x][source.y].team = null;
-      // setBoard(board);
-      // setLost(lost);
-      // setTurn("w");
-
       fetch("/api/getBestMove", {
         method: "POST",
         headers: {
@@ -123,7 +106,6 @@ function Board() {
       default:
         movements = king(piece, board);
     }
-    // console.log(movements);
     for (let x in board) for (let y in board[x]) board[x][y].active = false;
     for (let i = 0; i < movements.length; i++) {
       board[movements[i].x][movements[i].y].active = true;

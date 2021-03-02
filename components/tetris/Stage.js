@@ -1,11 +1,8 @@
-import React from "react";
 import Cell from "./Cell";
 
 const Stage = ({ stage }) => (
-  <>
-    <div className="stage">
-      {stage.map(row => row.map((cell, x) => <Cell key={x} type={cell[0]} />))}
-    </div>
+  <div className="stage">
+    {stage.map(row => row.map((cell, x) => <Cell key={x} type={cell[0]} />))}
     <style jsx>{`
       .stage {
         display: grid;
@@ -31,7 +28,7 @@ const Stage = ({ stage }) => (
         }
       }
     `}</style>
-  </>
+  </div>
 );
 
 export default Stage;
