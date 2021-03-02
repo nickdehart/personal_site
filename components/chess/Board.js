@@ -14,34 +14,87 @@ import king from "../../helpers/chess/king";
 function Board() {
   const [board, setBoard] = React.useState([]);
   const [turn, setTurn] = React.useState("w");
+  const [moves, setMoves] = React.useState("");
   const [active, setActive] = React.useState(null);
   const [lost, setLost] = React.useState({ b: [], w: [] });
   const [gameOver, setGameOver] = React.useState(false);
+  const lookupX = {
+    0: 7,
+    1: 6,
+    2: 5,
+    3: 4,
+    4: 3,
+    5: 2,
+    6: 1,
+    7: 0
+  };
+  const lookupY = {
+    a: "0",
+    b: "1",
+    c: "2",
+    d: "3",
+    e: "4",
+    f: "5",
+    g: "6",
+    h: "7",
+    "0": "a",
+    "1": "b",
+    "2": "c",
+    "3": "d",
+    "4": "e",
+    "5": "f",
+    "6": "g",
+    "7": "h"
+  };
 
   // Uncomment for AI, but it is very janky
-  // React.useEffect(() => {
-  //   if (turn === "b" && !gameOver) {
-  //     try {
-  //       let bestMove = getBestMove(_.cloneDeep(board), 10);
-  //       // console.log(bestMove);
-  //       let source = board[bestMove[0].x][bestMove[0].y];
-  //       let target = board[bestMove[1].x][bestMove[1].y];
+  React.useEffect(() => {
+    if (turn === "b" && !gameOver) {
+      // let bestMove = getBestMove(_.cloneDeep(board), 10);
+      // console.log(bestMove);
+      // let source = board[bestMove[0].x][bestMove[0].y];
+      // let target = board[bestMove[1].x][bestMove[1].y];
+      // if (target.type === "K") setGameOver(true);
+      // if (board[target.x][target.y].type)
+      //   lost[board[target.x][target.y].team].push({ ...target });
+      // board[target.x][target.y].type = source.type;
+      // board[target.x][target.y].team = source.team;
+      // board[source.x][source.y].type = null;
+      // board[source.x][source.y].team = null;
+      // setBoard(board);
+      // setLost(lost);
+      // setTurn("w");
 
-  //       if (target.type === "K") setGameOver(true);
-  //       if (board[target.x][target.y].type)
-  //         lost[board[target.x][target.y].team].push({ ...target });
-  //       board[target.x][target.y].type = source.type;
-  //       board[target.x][target.y].team = source.team;
-  //       board[source.x][source.y].type = null;
-  //       board[source.x][source.y].team = null;
-  //       setBoard(board);
-  //       setLost(lost);
-  //       setTurn("w");
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   }
-  // }, [turn, board, lost, gameOver]);
+      fetch("/api/getBestMove", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          moves: moves
+        })
+      })
+        .then(response => response.json())
+        .then(data => {
+          let best = data.bestNext;
+          let source = board[lookupX[parseInt(best[1]) - 1]][lookupY[best[0]]];
+          let target = board[lookupX[parseInt(best[3]) - 1]][lookupY[best[2]]];
+          if (target.type === "K") setGameOver(true);
+          if (board[target.x][target.y].type)
+            lost[board[target.x][target.y].team].push({ ...target });
+          board[target.x][target.y].type = source.type;
+          board[target.x][target.y].team = source.team;
+          board[source.x][source.y].type = null;
+          board[source.x][source.y].team = null;
+          setBoard(board);
+          setLost(lost);
+          setTurn("w");
+          setMoves(`${moves}${best}`);
+        })
+        .catch(error => console.error(error));
+    }
+  }, [turn, board, lost, gameOver]);
 
   React.useEffect(() => {
     setBoard(setup());
@@ -91,6 +144,11 @@ function Board() {
     setBoard(board);
     setActive(null);
     setLost(lost);
+    setMoves(
+      `${moves}${lookupY[active.y]}${lookupX[active.x] + 1}${
+        lookupY[target.y]
+      }${lookupX[target.x] + 1}`
+    );
     if (turn === "w") setTurn("b");
     else setTurn("w");
   };
