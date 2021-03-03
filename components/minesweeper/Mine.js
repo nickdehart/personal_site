@@ -7,6 +7,10 @@ function Mine({ bomb, num }) {
   // flagged - a cell the player flags as a possible mine
   // revealed - a cell that has been revealed to be a mine or not
 
+  React.useEffect(() => {
+    setState("covered");
+  }, [bomb, num]);
+
   const handleLeftClick = () => {
     if (state === "covered") {
       if (bomb === 1) {

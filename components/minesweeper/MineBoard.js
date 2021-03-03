@@ -76,6 +76,7 @@ function MineBoard() {
             ))}
         </tbody>
       </table>
+      <button onClick={() => setup()}>Restart</button>
       <style jsx>{`
         .minesweeper {
           width: 100%;
@@ -83,6 +84,7 @@ function MineBoard() {
           display: flex;
           align-items: center;
           justify-content: center;
+          flex-direction: column;
         }
 
         table {
@@ -90,6 +92,7 @@ function MineBoard() {
           display: flex;
           justify-content: center;
           align-items: center;
+          padding-bottom: 10px;
         }
 
         tr {
