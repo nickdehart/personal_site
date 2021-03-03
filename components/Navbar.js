@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "./Link";
+import Image from "next/image";
 
 function Navbar({ links }) {
   const [open, setOpen] = React.useState(false);
@@ -23,33 +24,11 @@ function Navbar({ links }) {
       </nav>
       <button onClick={() => setOpen(!open)}>
         {open ? (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
+          <img src="/close.svg" alt="close icon" />
         ) : (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          </svg>
+          // <Image src={`/close.svg`} alt="close icon" width={35} height={35} />
+          <img src="/burger.svg" alt="open icon" />
+          // <Image src={`/burger.svg`} alt="open icon" width={35} height={35} />
         )}
       </button>
       <style jsx>{`
@@ -109,10 +88,11 @@ function Navbar({ links }) {
           position: absolute;
           right: 0;
         }
-        svg {
+        img {
           width: 100%;
           height: 100%;
-          z-index: 2;
+          z-index: 999;
+          color: white;
         }
         @media only screen and (max-width: 600px) {
           nav {

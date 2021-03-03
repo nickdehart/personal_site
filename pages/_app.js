@@ -12,8 +12,7 @@ function MyApp({ Component, pageProps }) {
     "/tetris": { route: "Tetris", header: "ReacTetris" },
     "/sudoku": { route: "Sudoku", header: "React Sudoku" },
     "/chess": { route: "Chess", header: "React Chess" },
-    "/minesweeper": { route: "Minesweeper", header: "React Minesweeper" },
-    "/404": { route: "", header: "" }
+    "/minesweeper": { route: "Minesweeper", header: "React Minesweeper" }
   };
   // const [price, setPrice] = React.useState([]);
 
