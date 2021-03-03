@@ -87,11 +87,12 @@ function Navbar({ links }) {
           border: 0px;
           position: absolute;
           right: 0;
+          z-index: 100;
         }
         img {
           width: 100%;
           height: 100%;
-          z-index: 999;
+          z-index: 200;
           color: white;
         }
         @media only screen and (max-width: 600px) {
