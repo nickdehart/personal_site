@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useRef } from "react";
+import useOutsideAlerter from "../hooks/useOutsideAlerter";
 import Link from "./Link";
-import Image from "next/image";
 
 function Navbar({ links }) {
   const [open, setOpen] = React.useState(false);
 
+  const wrapperRef = useRef(null);
+  useOutsideAlerter(wrapperRef, () => setOpen(false));
+
   return (
-    <>
+    <div ref={wrapperRef}>
       <nav id="navigation">
         <p style={{ fontSize: "50px", margin: "0px", zIndex: 1 }}>&#128142;</p>
         <p style={{ fontSize: "70px", margin: "0px", marginTop: "-90px" }}>
@@ -81,7 +84,7 @@ function Navbar({ links }) {
           font-size: 25px;
           // background: #63c;
           background: #282c34;
-          color: white;
+          color: #9ecaed;
           margin: 25px 15px 15px 15px;
           border-radius: 7px;
           border: 0px;
@@ -93,7 +96,7 @@ function Navbar({ links }) {
           width: 100%;
           height: 100%;
           z-index: 200;
-          color: white;
+          color: #9ecaed;
         }
         @media only screen and (max-width: 600px) {
           nav {
@@ -109,7 +112,7 @@ function Navbar({ links }) {
           }
         }
       `}</style>
-    </>
+    </div>
   );
 }
 
