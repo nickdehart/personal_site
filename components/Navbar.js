@@ -26,9 +26,9 @@ function Navbar({ links }) {
         {open ? (
           <img src="/close.svg" alt="close icon" />
         ) : (
-          // <Image src={`/close.svg`} alt="close icon" width={35} height={35} />
+          // <object data="/close.svg" type="image/svg+xml"></object>
           <img src="/burger.svg" alt="open icon" />
-          // <Image src={`/burger.svg`} alt="open icon" width={35} height={35} />
+          // <object data="/burger.svg" type="image/svg+xml"></object>
         )}
       </button>
       <style jsx>{`
