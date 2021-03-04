@@ -1,6 +1,6 @@
 import React from "react";
 
-function Mine({ bomb, num }) {
+function Mine({ bomb, num, gameover, setGameover }) {
   const [state, setState] = React.useState("covered");
   // 3 possible states
   // covered - a cell that may or may not be a mine
@@ -8,15 +8,16 @@ function Mine({ bomb, num }) {
   // revealed - a cell that has been revealed to be a mine or not
 
   React.useEffect(() => {
-    setState("covered");
-  }, [bomb, num]);
+    if (!gameover) setState("covered");
+  }, [gameover]);
 
   const handleLeftClick = () => {
     if (state === "covered") {
-      if (bomb === 1) {
-        window.alert("Game Over");
-      }
       setState("revealed");
+      if (bomb === 1 && gameover === false) {
+        window.alert("Game Over");
+        setGameover(true);
+      }
     } else if (state === "flagged")
       window.alert("Flagged cells cannot be revealed. Unflag them first.");
   };

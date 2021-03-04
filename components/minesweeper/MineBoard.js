@@ -3,6 +3,7 @@ import Mine from "./Mine";
 
 function MineBoard() {
   const [board, setBoard] = React.useState([]);
+  const [gameover, setGameover] = React.useState(false);
   React.useEffect(() => {
     setup();
   }, []);
@@ -69,14 +70,26 @@ function MineBoard() {
               <tr key={`minesweeper-row-${rowIndex}`}>
                 {row.map((col, colIndex) => (
                   <td key={`minesweeper-col-${colIndex}`}>
-                    <Mine bomb={col} num={getNumber(rowIndex, colIndex)} />
+                    <Mine
+                      bomb={col}
+                      num={getNumber(rowIndex, colIndex)}
+                      gameover={gameover}
+                      setGameover={setGameover}
+                    />
                   </td>
                 ))}
               </tr>
             ))}
         </tbody>
       </table>
-      <button onClick={() => setup()}>Restart</button>
+      <button
+        onClick={() => {
+          setup();
+          setGameover(false);
+        }}
+      >
+        Restart
+      </button>
       <style jsx>{`
         .minesweeper {
           width: 100%;
